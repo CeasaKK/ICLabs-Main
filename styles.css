@@ -473,17 +473,7 @@ h1 {
   filter: blur(20px);
   transform: rotate(-8deg);
 }
-.service-tile::before, .price-card::before, .work-card::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  background: radial-gradient(circle at var(--mx, 50%) var(--my, 50%), rgba(124,255,191,.26), transparent 34%);
-  opacity: 0;
-  transition: opacity .25s ease;
-  pointer-events: none;
-}
-.service-tile:hover::before, .price-card:hover::before, .work-card:hover::before { opacity: 1; }
+
 .service-tile:hover, .price-card:hover, .work-card:hover {
   border-color: rgba(0,185,118,0.5);
   box-shadow: 0 26px 80px rgba(8, 11, 15, 0.16);
