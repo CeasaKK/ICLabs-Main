@@ -665,25 +665,25 @@
       const px = (event.clientX - rect.left) / rect.width;
       const py = (event.clientY - rect.top) / rect.height;
 
-      // Gentle tilt (max ±5 degrees) for sleek aesthetics
-      const maxTilt = 5;
+      // DRAMATIC tilt (max ±12 degrees) for aggressive 3D feedback
+      const maxTilt = 12;
       const rx = (py - 0.5) * -maxTilt;
       const ry = (px - 0.5) * maxTilt;
 
       card.style.setProperty("--mx", `${px * 100}%`);
       card.style.setProperty("--my", `${py * 100}%`);
 
-      // conic-gradient angle for holographic orbs/cards if needed
       const angle = Math.atan2(py - 0.5, px - 0.5) * (180 / Math.PI) + 180;
       card.style.setProperty("--angle", String(angle));
 
       gsap.to(card, {
         rotateX: rx,
         rotateY: ry,
-        scale: 1.018,
-        transformPerspective: 1000,
+        y: -14,
+        scale: 1.05,
+        transformPerspective: 800,
         transformOrigin: "center",
-        duration: 0.35,
+        duration: 0.4,
         ease: "power2.out",
         overwrite: "auto"
       });
@@ -694,8 +694,9 @@
       gsap.to(card, {
         rotateX: 0,
         rotateY: 0,
+        y: 0,
         scale: 1,
-        duration: 0.6,
+        duration: 0.7,
         ease: "power3.out",
         overwrite: "auto"
       });
@@ -798,17 +799,18 @@
   });
 
   /* ═══════════════════════════════════════════════════════
-     HERO PROOF BADGES — 3D Pop on Hover
+     HERO PROOF BADGES — Dramatic 3D Pop
      ═══════════════════════════════════════════════════════ */
   document.querySelectorAll(".hero-proof span").forEach((badge) => {
     badge.addEventListener("mouseenter", () => {
       gsap.to(badge, {
-        y: -5,
-        scale: 1.08,
-        rotateX: 8,
+        y: -10,
+        scale: 1.12,
+        rotateX: 12,
+        rotateY: -4,
         transformPerspective: 500,
-        duration: 0.25,
-        ease: "power2.out"
+        duration: 0.3,
+        ease: "back.out(1.7)"
       });
     });
     badge.addEventListener("mouseleave", () => {
@@ -816,9 +818,210 @@
         y: 0,
         scale: 1,
         rotateX: 0,
-        duration: 0.4,
+        rotateY: 0,
+        duration: 0.5,
         ease: "power3.out"
       });
     });
   });
+
+  /* ═══════════════════════════════════════════════════════
+     WORK CARD — Inner Depth Parallax on Hover
+     Inner UI elements move independently from the card tilt
+     ═══════════════════════════════════════════════════════ */
+  document.querySelectorAll(".work-card").forEach((card) => {
+    const inner = card.querySelector(".mini-dashboard, .email-builder, .product-page");
+    if (!inner) return;
+
+    card.addEventListener("mousemove", (e) => {
+      const rect = card.getBoundingClientRect();
+      const px = (e.clientX - rect.left) / rect.width - 0.5;
+      const py = (e.clientY - rect.top) / rect.height - 0.5;
+
+      gsap.to(inner, {
+        x: px * 24,
+        y: py * 18,
+        rotateX: py * -10,
+        rotateY: px * 10,
+        transformPerspective: 600,
+        duration: 0.5,
+        ease: "power2.out",
+        overwrite: "auto"
+      });
+    });
+
+    card.addEventListener("mouseleave", () => {
+      gsap.to(inner, {
+        x: 0, y: 0,
+        rotateX: 0, rotateY: 0,
+        duration: 0.8,
+        ease: "elastic.out(1, 0.5)"
+      });
+    });
+  });
+
+  /* ═══════════════════════════════════════════════════════
+     SERVICE TILE — Inner Content Animation on Hover
+     Numbers scale up, titles lift, content shifts
+     ═══════════════════════════════════════════════════════ */
+  document.querySelectorAll(".service-tile").forEach((tile) => {
+    const num = tile.querySelector("span");
+    const h3 = tile.querySelector("h3");
+    const p = tile.querySelector("p");
+
+    tile.addEventListener("mouseenter", () => {
+      if (num) gsap.to(num, { scale: 1.4, y: -4, duration: 0.4, ease: "back.out(1.7)" });
+      if (h3) gsap.to(h3, { y: -6, duration: 0.5, ease: "power3.out" });
+      if (p) gsap.to(p, { y: -3, opacity: 1, duration: 0.5, ease: "power3.out", delay: 0.05 });
+    });
+
+    tile.addEventListener("mouseleave", () => {
+      if (num) gsap.to(num, { scale: 1, y: 0, duration: 0.5, ease: "power3.out" });
+      if (h3) gsap.to(h3, { y: 0, duration: 0.5, ease: "power3.out" });
+      if (p) gsap.to(p, { y: 0, duration: 0.5, ease: "power3.out" });
+    });
+  });
+
+  /* ═══════════════════════════════════════════════════════
+     PROCESS RAIL — Chain Reaction Hover
+     Hovering one step lifts its neighbors slightly
+     ═══════════════════════════════════════════════════════ */
+  const processArticles = document.querySelectorAll(".process-rail article");
+  processArticles.forEach((article, index) => {
+    article.addEventListener("mouseenter", () => {
+      const span = article.querySelector("span");
+      if (span) gsap.to(span, { scale: 1.3, y: -3, duration: 0.35, ease: "back.out(1.7)" });
+
+      // Lift neighbors
+      const prev = processArticles[index - 1];
+      const next = processArticles[index + 1];
+      if (prev) gsap.to(prev, { y: -6, scale: 1.02, duration: 0.35, ease: "power2.out", overwrite: "auto" });
+      if (next) gsap.to(next, { y: -6, scale: 1.02, duration: 0.35, ease: "power2.out", overwrite: "auto" });
+    });
+
+    article.addEventListener("mouseleave", () => {
+      const span = article.querySelector("span");
+      if (span) gsap.to(span, { scale: 1, y: 0, duration: 0.45, ease: "power3.out" });
+
+      const prev = processArticles[index - 1];
+      const next = processArticles[index + 1];
+      if (prev) gsap.to(prev, { y: 0, scale: 1, duration: 0.55, ease: "power3.out", overwrite: "auto" });
+      if (next) gsap.to(next, { y: 0, scale: 1, duration: 0.55, ease: "power3.out", overwrite: "auto" });
+    });
+  });
+
+  /* ═══════════════════════════════════════════════════════
+     FLOATING CARD — Explosive Hover Lift
+     Cards blast outward with 3D rotation when hovered
+     ═══════════════════════════════════════════════════════ */
+  document.querySelectorAll(".floating-card").forEach((card) => {
+    card.addEventListener("mouseenter", () => {
+      const isCampaign = card.classList.contains("campaign-card");
+      gsap.to(card, {
+        y: -18,
+        x: isCampaign ? 10 : -10,
+        scale: 1.08,
+        rotateX: isCampaign ? 6 : -5,
+        rotateY: isCampaign ? 8 : -7,
+        transformPerspective: 800,
+        duration: 0.5,
+        ease: "back.out(1.4)",
+        overwrite: "auto"
+      });
+    });
+    card.addEventListener("mouseleave", () => {
+      gsap.to(card, {
+        y: 0, x: 0, scale: 1,
+        rotateX: 0, rotateY: 0,
+        duration: 0.7,
+        ease: "elastic.out(1, 0.6)",
+        overwrite: "auto"
+      });
+    });
+  });
+
+  /* ═══════════════════════════════════════════════════════
+     DEVICE SHELL — Independent 3D Depth Hover
+     ═══════════════════════════════════════════════════════ */
+  const deviceShell = document.querySelector(".device-shell");
+  if (deviceShell) {
+    deviceShell.addEventListener("mouseenter", () => {
+      gsap.to(deviceShell, {
+        y: -12,
+        scale: 1.03,
+        rotateX: 4,
+        rotateY: -5,
+        transformPerspective: 1000,
+        duration: 0.5,
+        ease: "power3.out"
+      });
+    });
+    deviceShell.addEventListener("mouseleave", () => {
+      gsap.to(deviceShell, {
+        y: 0, scale: 1,
+        rotateX: 0, rotateY: 0,
+        duration: 0.7,
+        ease: "elastic.out(1, 0.6)"
+      });
+    });
+  }
+
+  /* ═══════════════════════════════════════════════════════
+     CAMPAIGN NODES — Scatter Effect on Hover
+     ═══════════════════════════════════════════════════════ */
+  const campaignCard = document.querySelector(".campaign-card");
+  if (campaignCard) {
+    const nodes = campaignCard.querySelectorAll(".campaign-nodes span");
+    campaignCard.addEventListener("mouseenter", () => {
+      nodes.forEach((node, i) => {
+        const directions = [
+          { x: -6, y: -10, rotate: -8 },
+          { x: 12, y: -5, rotate: 6 },
+          { x: -10, y: 6, rotate: 5 },
+          { x: 8, y: 10, rotate: -6 }
+        ];
+        const d = directions[i] || directions[0];
+        gsap.to(node, {
+          x: d.x, y: d.y, rotate: d.rotate,
+          scale: 1.06,
+          duration: 0.4,
+          delay: i * 0.04,
+          ease: "back.out(1.7)"
+        });
+      });
+    });
+    campaignCard.addEventListener("mouseleave", () => {
+      nodes.forEach((node) => {
+        gsap.to(node, {
+          x: 0, y: 0, rotate: 0, scale: 1,
+          duration: 0.5,
+          ease: "elastic.out(1, 0.5)"
+        });
+      });
+    });
+  }
+
+  /* ═══════════════════════════════════════════════════════
+     STATUS PILL — Dramatic Float on Hover
+     ═══════════════════════════════════════════════════════ */
+  const statusPill = document.querySelector(".status-pill");
+  if (statusPill) {
+    statusPill.addEventListener("mouseenter", () => {
+      gsap.to(statusPill, {
+        y: -6,
+        scale: 1.06,
+        rotateX: 5,
+        transformPerspective: 500,
+        duration: 0.35,
+        ease: "back.out(1.7)"
+      });
+    });
+    statusPill.addEventListener("mouseleave", () => {
+      gsap.to(statusPill, {
+        y: 0, scale: 1, rotateX: 0,
+        duration: 0.5,
+        ease: "power3.out"
+      });
+    });
+  }
 })();
