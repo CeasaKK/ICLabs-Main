@@ -1,0 +1,873 @@
+{
+  "document_name": "Isocode Labs Website Build Prompt",
+  "domain": "isocodeslab.com",
+  "brand_name": "Isocode Labs",
+  "model_target": "GPT-5.5 xhigh",
+  "created_at": "2026-06-03",
+  "usage_instruction": "Give this entire JSON document to GPT-5.5 xhigh. Treat all fields as binding requirements for designing and building the website unless a field explicitly says it is optional.",
+  "master_prompt": {
+    "role": "You are a senior creative technologist, conversion strategist, motion designer, frontend engineer, and brand copywriter. Build a production-ready website for Isocode Labs at isocodeslab.com.",
+    "objective": "Create a premium, high-converting, highly animated agency and venture-lab website that makes visitors immediately understand that Isocode Labs builds expensive, high-end digital experiences and complex web systems. The site must feel cinematic, precise, fast, and trustworthy, while remaining easy to navigate.",
+    "success_definition": "A founder, creator, clinic operator, or business owner should feel that Isocode Labs is capable of building a serious digital product, not just a pretty landing page. Within 60 seconds they should understand the services, see proof of complexity, understand the INR 50,000 to INR 150,000 website range, and have a clear path to book a consultation.",
+    "non_negotiables": [
+      "The first viewport must clearly show the brand name Isocode Labs, the core offer, and a primary call to action.",
+      "The website must not look like a generic agency template.",
+      "The animation must feel premium and intentional, not distracting.",
+      "Navigation must remain simple and visible across the experience.",
+      "The site must include strong proof through case-study storytelling: hospital management system, AI email campaign builder, creator digital product launches, and experimental venture work.",
+      "Use GSAP for the primary motion system, with ScrollTrigger and ScrollSmoother as the core scroll experience.",
+      "Respect prefers-reduced-motion and provide an equally polished non-motion experience.",
+      "Use Indian pricing language clearly: INR 50,000 to INR 150,000 for high-end website engagements, with complex apps quoted separately.",
+      "Do not overpromise that a hospital management system or full SaaS app fits inside the website price range.",
+      "Deliver responsive layouts that work flawlessly on mobile, tablet, laptop, and wide desktop."
+    ]
+  },
+  "business_context": {
+    "services": [
+      {
+        "name": "High-end animated websites",
+        "description": "End-to-end website development for premium brands, creators, founders, institutions, and service businesses that want a site that feels memorable, smooth, and conversion-focused.",
+        "price_positioning": "Typical website engagements range from INR 50,000 to INR 150,000 depending on depth, content, animation, design complexity, and integrations."
+      },
+      {
+        "name": "Complex web applications",
+        "description": "Custom systems such as hospital management workflows covering appointments, billing, consultations, inventory management, admin dashboards, and operational logic.",
+        "price_positioning": "Quoted separately after discovery because scope can vary widely."
+      },
+      {
+        "name": "AI API integrations",
+        "description": "AI-enabled product features such as content generation, campaign creation, workflow automation, assistant interfaces, and API-backed tools."
+      },
+      {
+        "name": "Email campaign creator systems",
+        "description": "A one-of-a-kind campaign builder experience where users can create campaigns, use AI assistance, and send campaigns directly."
+      },
+      {
+        "name": "Creator digital product launches",
+        "description": "Helping content creators package knowledge into digital products, build sales pages, publish offers, and launch with conversion infrastructure."
+      },
+      {
+        "name": "Experimental venture launches",
+        "description": "The lab side of Isocode Labs: launching and testing experimental ventures for the team and for collaborators."
+      }
+    ],
+    "audiences": [
+      "Founders who need a serious website before launch or fundraising",
+      "Premium service businesses that want trust, status, and lead generation",
+      "Creators launching paid digital products",
+      "Clinics, hospitals, and operators who need custom workflow software",
+      "Businesses wanting AI-powered workflows and campaign tools",
+      "Experimental founders who need a sharp MVP and launch system"
+    ],
+    "core_message": "Isocode Labs builds scroll-stopping websites, serious business systems, and experimental digital ventures with the same level of polish."
+  },
+  "brand_strategy": {
+    "positioning": "A premium web studio and venture lab for animated websites, AI-integrated tools, creator product launches, and complex operational systems.",
+    "personality": [
+      "Classy",
+      "Sharp",
+      "Experimental",
+      "Technically serious",
+      "Conversion-focused",
+      "Quietly confident"
+    ],
+    "tone_of_voice": {
+      "style": "Short, high-signal, premium, founder-facing, and direct.",
+      "avoid": [
+        "Cheap agency language",
+        "Overused words like innovative, cutting-edge, game-changing, next-gen",
+        "Excessive exclamation marks",
+        "Long paragraphs",
+        "Unverifiable claims",
+        "Generic corporate filler"
+      ],
+      "sample_lines": [
+        "Websites that feel expensive before anyone asks the price.",
+        "Built for founders, creators, and operators who need more than a brochure.",
+        "From scroll-driven brand worlds to hospital-grade workflow systems.",
+        "Launch the website. Prove the product. Build the next venture."
+      ]
+    },
+    "visual_direction": {
+      "overall": "Premium technical-lab aesthetic with cinematic motion, editorial spacing, precise typography, and product-system visuals.",
+      "palette": {
+        "base": "Near-black graphite, soft white, and warm light gray.",
+        "accents": "Acid green for active system signals, signal red for alerts, electric cyan for AI/data moments, muted gold for premium highlights.",
+        "rule": "Avoid a one-color theme. Do not make the site all purple, all blue, all beige, or all dark slate."
+      },
+      "typography": {
+        "display": "A refined high-contrast or geometric display typeface for hero and section titles.",
+        "body": "A clean sans-serif with excellent readability.",
+        "code": "A restrained monospace only for small technical labels, not for all text."
+      },
+      "imagery": [
+        "Use custom interface mockups of dashboards, campaign builders, appointment flows, creator product pages, and AI workflow panels.",
+        "Use full-bleed product scenes and interface compositions rather than generic stock photography.",
+        "Use subtle code fragments, system lines, cursor states, and data pulses as brand texture."
+      ]
+    }
+  },
+  "information_architecture": {
+    "recommended_routes": [
+      {
+        "path": "/",
+        "name": "Home",
+        "purpose": "Main conversion page with the strongest story, services, proof, process, pricing range, and booking CTA."
+      },
+      {
+        "path": "/work",
+        "name": "Work",
+        "purpose": "Case-study index with filters for websites, systems, AI, creator launches, and lab ventures."
+      },
+      {
+        "path": "/work/hospital-management-system",
+        "name": "Hospital Management System Case Study",
+        "purpose": "Show operational complexity, dashboard thinking, workflow design, and backend seriousness."
+      },
+      {
+        "path": "/work/ai-email-campaign-builder",
+        "name": "AI Email Campaign Builder Case Study",
+        "purpose": "Show AI API integration, product UX, campaign creation, and send workflow."
+      },
+      {
+        "path": "/services",
+        "name": "Services",
+        "purpose": "Detailed service breakdown for websites, web apps, AI integrations, creator products, and venture launches."
+      },
+      {
+        "path": "/lab",
+        "name": "Lab",
+        "purpose": "Experimental ventures, prototypes, and future-facing ideas from Isocode Labs."
+      },
+      {
+        "path": "/contact",
+        "name": "Contact",
+        "purpose": "Qualification form and consultation booking."
+      }
+    ],
+    "primary_navigation": [
+      "Work",
+      "Services",
+      "Process",
+      "Pricing",
+      "Lab",
+      "Contact"
+    ],
+    "cta_labels": [
+      "Book a Build Call",
+      "Start a Project",
+      "View Proof",
+      "Get a Website Quote"
+    ],
+    "navigation_behavior": [
+      "Use a sticky but compact navigation bar that stays readable over animated sections.",
+      "Add smooth anchor scrolling for same-page sections.",
+      "Use ScrollTo-style transitions for navigation clicks.",
+      "On mobile, use a clean full-screen menu with direct anchors and CTA."
+    ]
+  },
+  "home_page_structure": [
+    {
+      "section_id": "hero",
+      "section_name": "Cinematic Proof-First Hero",
+      "purpose": "Establish premium positioning immediately and invite action.",
+      "headline": "High-end websites, AI tools, and venture systems built to feel impossible to ignore.",
+      "subheadline": "Isocode Labs designs and develops scroll-animated websites, custom web applications, AI API integrations, creator product launches, and experimental ventures.",
+      "primary_cta": "Book a Build Call",
+      "secondary_cta": "View Work",
+      "trust_microcopy": "Premium website builds: INR 50,000-150,000. Complex products quoted after discovery.",
+      "visual": "Full-bleed interactive system scene: code fragments, product windows, dashboard cards, campaign nodes, appointment states, and creator product tiles assemble into the Isocode Labs identity.",
+      "animation_direction": {
+        "gsap_references": [
+          "ScrollTrigger",
+          "ScrollSmoother",
+          "SplitText",
+          "ScrambleText",
+          "Magnetic Button - overwrite modes"
+        ],
+        "behavior": [
+          "On load, scramble technical labels into clear offer words.",
+          "Split headline into lines and reveal with staggered vertical motion.",
+          "Use subtle cursor-responsive depth on interface layers.",
+          "Primary CTA should have a magnetic hover effect inspired by the GSAP Magnetic Button demo.",
+          "As the user begins scrolling, the hero interface scene compresses into a precise navigation/proof bar."
+        ]
+      },
+      "conversion_notes": [
+        "Make the offer and price range visible above the fold.",
+        "Do not hide the CTA inside animation.",
+        "Make the hero feel premium, but keep load time acceptable."
+      ]
+    },
+    {
+      "section_id": "proof_strip",
+      "section_name": "Built Beyond Brochures",
+      "purpose": "Quickly show technical range.",
+      "content": [
+        "Hospital workflows",
+        "Billing systems",
+        "Inventory dashboards",
+        "AI campaign creation",
+        "Creator product launches",
+        "Experimental ventures"
+      ],
+      "animation_direction": {
+        "gsap_references": [
+          "Velocity Skew",
+          "ScrollTrigger"
+        ],
+        "behavior": [
+          "Use scroll-velocity-aware skew on a horizontal proof marquee, then settle each item sharply.",
+          "Keep motion subtle enough that text stays readable."
+        ]
+      }
+    },
+    {
+      "section_id": "signature_offer",
+      "section_name": "What We Build",
+      "purpose": "Explain the service pillars without overwhelming the visitor.",
+      "layout": "Five full-width bands or large tiles, not nested cards.",
+      "items": [
+        {
+          "title": "High-End Animated Websites",
+          "copy": "A premium website that sells your seriousness before a sales call happens.",
+          "proof": "Scroll scenes, conversion copy, custom design, responsive build, analytics, launch support."
+        },
+        {
+          "title": "Custom Web Systems",
+          "copy": "Operational software for teams that have outgrown spreadsheets and generic tools.",
+          "proof": "Appointments, bills, consultations, inventory, dashboards, roles, and workflows."
+        },
+        {
+          "title": "AI API Integrations",
+          "copy": "AI features that do useful work inside real products.",
+          "proof": "Campaign generation, content assistance, workflow automation, assistant interfaces."
+        },
+        {
+          "title": "Creator Digital Products",
+          "copy": "Turn content, expertise, and audience trust into a product people can buy.",
+          "proof": "Offer structure, landing pages, checkout flow, publishing, launch assets."
+        },
+        {
+          "title": "Venture Lab Experiments",
+          "copy": "New ideas shipped as sharp prototypes, MVPs, and testable digital ventures.",
+          "proof": "Exploration, branding, interface design, build, launch, iteration."
+        }
+      ],
+      "animation_direction": {
+        "gsap_references": [
+          "ScrollTrigger",
+          "MorphSVG",
+          "MotionPath"
+        ],
+        "behavior": [
+          "Pin the section while each service takes focus.",
+          "Animate a thin system line traveling through each service pillar.",
+          "Morph simple symbols between website, dashboard, AI node, creator product, and venture lab marks.",
+          "Use section progress indicators so the visitor never feels lost."
+        ]
+      }
+    },
+    {
+      "section_id": "case_study_gallery",
+      "section_name": "Proof Through Systems",
+      "purpose": "Turn portfolio proof into a high-converting narrative.",
+      "layout": "A scroll-scrubbed bento/gallery section with three main case studies and one lab preview.",
+      "case_cards": [
+        {
+          "title": "Hospital Management System",
+          "category": "Complex Web App",
+          "headline": "Appointments, consultations, billing, and inventory connected in one operating layer.",
+          "modules": [
+            "Appointment booking",
+            "Doctor consultation records",
+            "Billing and invoices",
+            "Inventory tracking",
+            "Admin dashboards",
+            "Role-based access"
+          ],
+          "cta": "View System Case"
+        },
+        {
+          "title": "AI Email Campaign Creator",
+          "category": "AI Product",
+          "headline": "Create campaigns, shape copy with AI, and send without leaving the workflow.",
+          "modules": [
+            "Campaign builder",
+            "Audience flow",
+            "AI content assistance",
+            "Template editing",
+            "Send workflow",
+            "Performance-ready structure"
+          ],
+          "cta": "View Campaign Case"
+        },
+        {
+          "title": "Creator Digital Product Launches",
+          "category": "Creator Commerce",
+          "headline": "From content expertise to packaged offers, product pages, and launch-ready funnels.",
+          "modules": [
+            "Product strategy",
+            "Sales page",
+            "Offer architecture",
+            "Checkout path",
+            "Launch assets",
+            "Publishing support"
+          ],
+          "cta": "Explore Creator Builds"
+        },
+        {
+          "title": "The Lab",
+          "category": "Venture Experiments",
+          "headline": "Experimental products and ventures shaped fast enough to learn from the market.",
+          "modules": [
+            "Concepting",
+            "Prototype",
+            "Brand system",
+            "MVP build",
+            "Launch",
+            "Iteration"
+          ],
+          "cta": "Enter the Lab"
+        }
+      ],
+      "animation_direction": {
+        "gsap_references": [
+          "Scrubbed bento gallery",
+          "Flip",
+          "ScrollTrigger"
+        ],
+        "behavior": [
+          "Use a scroll-scrubbed gallery inspired by the GSAP Scrubbed Bento Gallery demo.",
+          "Cards should rearrange using Flip-like transitions as each case gains focus.",
+          "Each case opens with a lightweight product mockup animation, not just static text.",
+          "Make each case CTA always accessible by keyboard and touch."
+        ]
+      }
+    },
+    {
+      "section_id": "price_framing",
+      "section_name": "Premium Website Range",
+      "purpose": "Qualify leads and make pricing feel transparent without locking every project into a package.",
+      "headline": "Built like a flagship, priced for serious launches.",
+      "copy": "Most high-end website engagements fall between INR 50,000 and INR 150,000. The final quote depends on content depth, motion complexity, integrations, and launch support. Complex web applications and large systems are scoped separately.",
+      "pricing_bands": [
+        {
+          "name": "Signature Website",
+          "range": "INR 50,000-75,000",
+          "best_for": "Creators, consultants, and early-stage brands needing a premium web presence.",
+          "includes": [
+            "Custom landing or small website",
+            "Premium responsive design",
+            "Core GSAP motion",
+            "Conversion copy structure",
+            "Contact or booking flow"
+          ]
+        },
+        {
+          "name": "Scroll-Animated Brand Site",
+          "range": "INR 75,000-120,000",
+          "best_for": "Brands and founders wanting a memorable, story-led site with stronger animation.",
+          "includes": [
+            "Multi-section or multi-page website",
+            "Advanced scroll scenes",
+            "Case-study or service storytelling",
+            "Analytics setup",
+            "Launch polish"
+          ]
+        },
+        {
+          "name": "Flagship Launch Experience",
+          "range": "INR 120,000-150,000+",
+          "best_for": "Premium launches that need custom motion, product mockups, integrations, and deep conversion strategy.",
+          "includes": [
+            "High-end art direction",
+            "Complex GSAP timelines",
+            "Custom product visuals",
+            "Lead qualification flow",
+            "Launch support"
+          ]
+        }
+      ],
+      "animation_direction": {
+        "gsap_references": [
+          "ScrollTrigger",
+          "Magnetic Button - overwrite modes"
+        ],
+        "behavior": [
+          "Reveal pricing bands with a pinned comparison that stays easy to scan.",
+          "Use magnetic CTA only on desktop hover-capable devices.",
+          "On mobile, use simple tap states and no cursor-dependent effects."
+        ]
+      }
+    },
+    {
+      "section_id": "process",
+      "section_name": "How Projects Move",
+      "purpose": "Reduce uncertainty and show professional delivery.",
+      "steps": [
+        {
+          "title": "Map",
+          "description": "Clarify the business goal, audience, offer, required pages, workflows, and success metrics."
+        },
+        {
+          "title": "Frame",
+          "description": "Shape the story, section order, conversion path, wireframes, and motion storyboard."
+        },
+        {
+          "title": "Design",
+          "description": "Create a polished visual system, responsive layouts, interface mockups, and animation states."
+        },
+        {
+          "title": "Build",
+          "description": "Develop the frontend, GSAP motion, CMS/content handling, forms, analytics, and integrations."
+        },
+        {
+          "title": "Launch",
+          "description": "Test performance, accessibility, SEO basics, responsive behavior, and hand off a live-ready site."
+        },
+        {
+          "title": "Iterate",
+          "description": "Improve the site with data, new sections, campaigns, product pages, or system features."
+        }
+      ],
+      "animation_direction": {
+        "gsap_references": [
+          "MotionPath",
+          "DrawSVG",
+          "ScrollTrigger"
+        ],
+        "behavior": [
+          "Use a precise animated path that connects the six process steps as the user scrolls.",
+          "Each step should lock into place with clear text and an icon.",
+          "Avoid making the process feel like a decorative timeline with no substance."
+        ]
+      }
+    },
+    {
+      "section_id": "website_experience_lab",
+      "section_name": "Motion That Converts",
+      "purpose": "Explain that animation has a business purpose.",
+      "content_blocks": [
+        {
+          "title": "Scroll scenes that explain value",
+          "copy": "Use motion to reveal the product story step by step."
+        },
+        {
+          "title": "Interfaces that make proof visible",
+          "copy": "Show real workflow thinking through dashboard and product mockups."
+        },
+        {
+          "title": "Calls to action that stay reachable",
+          "copy": "The experience should impress people without hiding the next step."
+        },
+        {
+          "title": "Performance under control",
+          "copy": "Premium motion must still load fast and respect reduced-motion preferences."
+        }
+      ],
+      "animation_direction": {
+        "gsap_references": [
+          "Observer",
+          "ScrollTrigger",
+          "SplitText"
+        ],
+        "behavior": [
+          "Use Observer only for a contained interaction such as a snap section or lab switcher, not for hijacking the whole page.",
+          "Use SplitText for small editorial reveals, not for every paragraph."
+        ]
+      }
+    },
+    {
+      "section_id": "lead_qualification",
+      "section_name": "Start a Build",
+      "purpose": "Capture qualified leads with useful context.",
+      "headline": "Tell us what you want to launch.",
+      "fields": [
+        "Name",
+        "Email",
+        "WhatsApp or phone",
+        "Project type",
+        "Budget range",
+        "Target launch date",
+        "Short project description"
+      ],
+      "project_type_options": [
+        "High-end website",
+        "Web app or dashboard",
+        "AI integration",
+        "Creator digital product",
+        "Experimental venture",
+        "Not sure yet"
+      ],
+      "budget_options": [
+        "INR 50,000-75,000",
+        "INR 75,000-120,000",
+        "INR 120,000-150,000+",
+        "Custom app budget",
+        "Need guidance"
+      ],
+      "animation_direction": {
+        "gsap_references": [
+          "ScrambleText",
+          "Magnetic Button - overwrite modes"
+        ],
+        "behavior": [
+          "Use restrained field focus animations.",
+          "Scramble the submit label into a final direct CTA only after required fields are valid.",
+          "No distracting animation while typing."
+        ]
+      }
+    },
+    {
+      "section_id": "faq",
+      "section_name": "FAQ",
+      "purpose": "Handle objections before the visitor leaves.",
+      "questions": [
+        {
+          "q": "What does a premium website usually cost?",
+          "a": "Most high-end website projects fall between INR 50,000 and INR 150,000. The exact quote depends on scope, number of pages, animation depth, content, integrations, and launch support."
+        },
+        {
+          "q": "Do you only build websites?",
+          "a": "No. Isocode Labs also builds custom web applications, AI API integrations, creator product launch systems, and experimental venture prototypes."
+        },
+        {
+          "q": "Can you build complex systems like hospital management software?",
+          "a": "Yes. The team has built systems covering appointments, bills, consultations, inventory, dashboards, and operational flows. Complex systems are scoped separately from website packages."
+        },
+        {
+          "q": "Can you help creators launch digital products?",
+          "a": "Yes. Isocode Labs can help structure the offer, build the sales experience, publish the product, and create a launch-ready funnel."
+        },
+        {
+          "q": "Will the animations slow the website down?",
+          "a": "They should not. The build must optimize assets, avoid unnecessary heavy effects, and provide a reduced-motion experience."
+        },
+        {
+          "q": "How do we start?",
+          "a": "Book a build call or submit the project form with your goal, project type, rough budget, and target launch timeline."
+        }
+      ],
+      "animation_direction": {
+        "gsap_references": [
+          "Flip"
+        ],
+        "behavior": [
+          "FAQ rows can expand with smooth layout transitions inspired by Flip.",
+          "Keep accordions accessible with semantic buttons and keyboard support."
+        ]
+      }
+    },
+    {
+      "section_id": "footer",
+      "section_name": "Footer",
+      "purpose": "Give final navigation, contact path, and brand closure.",
+      "content": [
+        "Isocode Labs",
+        "High-end websites, AI tools, web systems, creator products, and experimental ventures.",
+        "Book a Build Call",
+        "isocodeslab.com",
+        "Navigation links",
+        "Social links if available"
+      ],
+      "animation_direction": {
+        "gsap_references": [
+          "ScrollTrigger"
+        ],
+        "behavior": [
+          "Use a final scroll reveal where system lines resolve into the brand name.",
+          "Avoid over-animating legal or footer navigation."
+        ]
+      }
+    }
+  ],
+  "case_study_page_requirements": {
+    "shared_structure": [
+      "Hero with project title, category, short result-oriented summary, and key modules.",
+      "Problem section that explains the operational or business issue.",
+      "System map section using animated diagrams.",
+      "Build highlights showing UX, engineering, integrations, and workflow decisions.",
+      "Screens or mockups section with scroll-scrubbed product states.",
+      "Outcome section focused on capability, clarity, and launch readiness.",
+      "CTA section pointing to contact form with matching project type preselected if possible."
+    ],
+    "hospital_case_study": {
+      "angle": "Use this case to prove Isocode Labs can think through complex operational systems, not just visuals.",
+      "must_show": [
+        "Appointment flow",
+        "Doctor consultation flow",
+        "Billing flow",
+        "Inventory management",
+        "Admin dashboard",
+        "Role-based workflow"
+      ],
+      "animation": "Scroll through a hospital operation line where each module activates in sequence. Use MotionPath for patient journey/data flow and MorphSVG for changing module icons."
+    },
+    "ai_email_campaign_case_study": {
+      "angle": "Use this case to prove product UX and AI API integration ability.",
+      "must_show": [
+        "Campaign creation canvas",
+        "Audience setup",
+        "AI copy generation",
+        "Template editing",
+        "Preview",
+        "Send action"
+      ],
+      "animation": "Use a campaign node graph that builds on scroll, with ScrambleText for AI-generated copy states and ScrollTrigger for send-wave motion."
+    }
+  },
+  "gsap_animation_reference_map": [
+    {
+      "name": "GSAP Demo Hub",
+      "url": "https://demos.gsap.com/",
+      "use_for": "Primary library of motion inspiration and demo references."
+    },
+    {
+      "name": "ScrollTrigger",
+      "url": "https://demos.gsap.com/plugin/scrolltrigger/",
+      "use_for": "Pinned storytelling, scroll-scrubbed product scenes, horizontal case study gallery, reveal sequencing, progress-driven animations."
+    },
+    {
+      "name": "ScrollSmoother",
+      "url": "https://demos.gsap.com/plugin/scrollsmoother/",
+      "use_for": "Premium smooth scrolling, subtle parallax, consistent page feel."
+    },
+    {
+      "name": "SplitText",
+      "url": "https://demos.gsap.com/plugin/splittext/",
+      "use_for": "Hero headline reveal, section-title entrances, controlled editorial text motion."
+    },
+    {
+      "name": "ScrambleText",
+      "url": "https://demos.gsap.com/plugin/scrambletext/",
+      "use_for": "AI copy moments, technical-to-human wording transitions, data labels resolving into service messages."
+    },
+    {
+      "name": "MorphSVG",
+      "url": "https://demos.gsap.com/plugin/morphsvg/",
+      "use_for": "Morphing symbols between website, system, AI, creator product, and lab concepts."
+    },
+    {
+      "name": "MotionPath",
+      "url": "https://demos.gsap.com/plugin/motionpath/",
+      "use_for": "Animated data flows, patient journey, campaign send wave, process path."
+    },
+    {
+      "name": "Flip",
+      "url": "https://demos.gsap.com/plugin/flip/",
+      "use_for": "Case study gallery rearrangements, expandable FAQ, service details, transitions between compact and focused states."
+    },
+    {
+      "name": "Observer",
+      "url": "https://demos.gsap.com/plugin/observer/",
+      "use_for": "Contained lab switcher or snap interaction using wheel/touch/pointer input, without hijacking the full site."
+    },
+    {
+      "name": "Scrubbed Bento Gallery",
+      "url": "https://demos.gsap.com/demo/scrubbed-bento-gallery/",
+      "use_for": "Portfolio/case-study section where proof modules expand, rearrange, and scrub with scroll."
+    },
+    {
+      "name": "Velocity Skew",
+      "url": "https://demos.gsap.com/demo/velocity-skew/",
+      "use_for": "Fast-moving proof strip or text marquee that responds to scroll velocity while staying readable."
+    },
+    {
+      "name": "Magnetic Button - overwrite modes",
+      "url": "https://demos.gsap.com/demo/magnetic-button-overwrite-modes/",
+      "use_for": "Premium hover treatment for primary CTAs and important interface controls on desktop."
+    }
+  ],
+  "motion_system_rules": {
+    "global": [
+      "Use GSAP timelines that are easy to debug and scoped per component.",
+      "Register plugins in one clear animation setup file.",
+      "Use ScrollTrigger markers only in development.",
+      "Create a reduced-motion mode that disables scroll-scrubbed movement, parallax, magnetic cursor effects, and text scrambling.",
+      "Avoid animation that moves large text while the user is trying to read it.",
+      "Use transform and opacity where possible for performance.",
+      "Avoid layout thrashing and excessive resize recalculation.",
+      "Refresh ScrollTrigger after fonts, images, and product mockups are loaded."
+    ],
+    "desktop_experience": [
+      "Use the fullest motion system on screens with enough viewport height and pointer precision.",
+      "Hero can have cursor-reactive product layers.",
+      "Service and case-study sections can use pinned scroll sequences.",
+      "Primary CTAs can use magnetic hover."
+    ],
+    "mobile_experience": [
+      "Keep scroll natural and direct.",
+      "Replace complex pinned horizontal galleries with vertical swipe-friendly or stacked sections if needed.",
+      "Avoid hover-only interactions.",
+      "Keep CTAs visible without requiring animation completion."
+    ],
+    "accessibility": [
+      "All animated content must have readable static states.",
+      "Keyboard navigation must work through all CTAs, forms, menus, accordions, and case-study links.",
+      "Do not trap scrolling.",
+      "Do not rely on motion alone to communicate critical information.",
+      "Maintain contrast ratios suitable for premium but readable UI."
+    ]
+  },
+  "conversion_strategy": {
+    "primary_conversion": "Book a qualified project call.",
+    "secondary_conversion": "Submit a project inquiry form.",
+    "tertiary_conversion": "Explore case studies and services.",
+    "lead_qualification": [
+      "Ask for project type.",
+      "Ask for budget range.",
+      "Ask for target launch date.",
+      "Ask for what the project needs to achieve.",
+      "Ask for contact details."
+    ],
+    "trust_builders": [
+      "Show complex project examples early.",
+      "Explain price range without burying it.",
+      "Show a clean process.",
+      "Use product mockups and workflow diagrams rather than vague claims.",
+      "Include FAQs that clarify scope and budget."
+    ],
+    "cta_placement": [
+      "Hero",
+      "After proof strip",
+      "After case-study gallery",
+      "After pricing section",
+      "Final contact section",
+      "Sticky mobile footer CTA if it does not crowd the viewport"
+    ],
+    "objection_handling": [
+      "Price: clarify typical website range and separate app scope.",
+      "Trust: prove complexity through systems built.",
+      "Speed: explain process and target timeline discovery.",
+      "Performance: explain animation optimization and reduced-motion support.",
+      "Scope: guide the user to choose project type in the form."
+    ]
+  },
+  "copy_bank": {
+    "hero_headline_options": [
+      "High-end websites, AI tools, and venture systems built to feel impossible to ignore.",
+      "Websites that feel expensive before anyone asks the price.",
+      "Premium web experiences for founders, creators, and operators building serious things."
+    ],
+    "hero_subheadline_options": [
+      "Isocode Labs designs and develops scroll-animated websites, custom systems, AI API integrations, creator product launches, and experimental ventures.",
+      "From cinematic brand sites to hospital-grade workflows and AI campaign builders, we turn digital ideas into sharp, usable products.",
+      "A premium studio for websites that convert, systems that run operations, and ventures that need to ship."
+    ],
+    "section_headlines": [
+      "Built Beyond Brochures",
+      "Proof Through Systems",
+      "Motion That Converts",
+      "Launch the Website. Prove the Product. Build the Venture.",
+      "From Interface Polish to Operational Depth",
+      "The Lab Is Where Experiments Become Products"
+    ],
+    "cta_copy": [
+      "Book a Build Call",
+      "Start a Project",
+      "Get a Website Quote",
+      "View Proof",
+      "Enter the Lab"
+    ],
+    "microcopy": [
+      "Premium website builds: INR 50,000-150,000.",
+      "Complex web applications are scoped separately.",
+      "Tell us what you want to launch. We will map the build from there.",
+      "Motion is not decoration here. It is how the product story becomes clear."
+    ]
+  },
+  "technical_build_spec": {
+    "recommended_stack": [
+      "Next.js with React and TypeScript",
+      "GSAP with ScrollTrigger, ScrollSmoother, SplitText, ScrambleText, Flip, MotionPath, and MorphSVG where licensing allows",
+      "CSS modules, Tailwind, or a local design system, but keep styling consistent",
+      "A lightweight form handling solution suitable for deployment",
+      "Static or CMS-ready content structure"
+    ],
+    "implementation_requirements": [
+      "Use semantic HTML sections and landmarks.",
+      "Use responsive, stable layout dimensions so animation states do not cause layout shift.",
+      "Create reusable components for SectionHeader, CTAButton, ServicePanel, CaseStudyPreview, PriceBand, ProcessStep, FAQAccordion, and LeadForm.",
+      "Use a single source of truth for services, cases, pricing bands, FAQs, and navigation.",
+      "Use image optimization and lazy loading for non-critical images.",
+      "Preload only critical hero assets.",
+      "Use route metadata, Open Graph tags, and basic schema markup.",
+      "Ensure form validation has clear inline errors.",
+      "Use analytics-ready CTA events if analytics is added later.",
+      "Do not use visible in-app instructions explaining how animations work."
+    ],
+    "performance_targets": [
+      "Fast initial render with a visible hero CTA.",
+      "No blank page while animation assets load.",
+      "Minimal cumulative layout shift.",
+      "Animation should stay smooth on mid-range mobile devices.",
+      "Defer non-critical animation setup until the relevant section is near viewport."
+    ],
+    "seo_targets": {
+      "home_title": "Isocode Labs - High-End Websites, AI Tools and Web Systems",
+      "home_description": "Isocode Labs builds premium scroll-animated websites, custom web applications, AI API integrations, creator product launches, and experimental ventures.",
+      "keywords": [
+        "high end website development India",
+        "GSAP website development",
+        "animated website agency",
+        "AI API integration website",
+        "custom web application development",
+        "creator digital product launch",
+        "hospital management system development"
+      ],
+      "schema": [
+        "Organization",
+        "ProfessionalService",
+        "WebSite",
+        "Service"
+      ]
+    }
+  },
+  "design_constraints": {
+    "must_do": [
+      "Build the actual website experience as the first screen, not a marketing splash page.",
+      "Make the brand and offer obvious in the first viewport.",
+      "Keep CTAs clear, repeated, and visually premium.",
+      "Use polished product mockups to make technical work tangible.",
+      "Keep text concise and scannable.",
+      "Use full-width sections or unframed layouts instead of stacking decorative cards everywhere.",
+      "Make mobile feel intentionally designed, not a collapsed desktop page."
+    ],
+    "must_not_do": [
+      "Do not create a generic agency landing page with vague service cards.",
+      "Do not use meaningless gradient blobs, abstract orbs, or purely decorative background clutter.",
+      "Do not make the entire site a dark blue or purple gradient theme.",
+      "Do not bury pricing.",
+      "Do not let animations block navigation or lead submission.",
+      "Do not use stock images that do not reveal the actual type of work Isocode Labs does.",
+      "Do not rely on lorem ipsum.",
+      "Do not create nested cards or cluttered dashboard walls that are impossible to read.",
+      "Do not make body text huge inside compact panels."
+    ]
+  },
+  "final_output_requirements_for_model": [
+    "Produce a complete implementation, not just a concept.",
+    "Include all page sections listed in the home_page_structure unless a route-specific build makes a clear equivalent.",
+    "Include route/page files, components, styles, animation setup, content data, and form UI.",
+    "Use real copy from this prompt, not placeholder text.",
+    "Document where GSAP animations are initialized and how reduced-motion behavior works.",
+    "Verify responsive behavior for mobile, tablet, desktop, and wide desktop.",
+    "Verify that the form can be completed with keyboard only.",
+    "Verify that CTAs are visible and clickable without waiting for animation timelines.",
+    "Run available lint, typecheck, and build commands before final response.",
+    "In the final response, summarize files changed, commands run, and any assumptions."
+  ],
+  "acceptance_criteria": [
+    "The hero immediately communicates Isocode Labs, the premium offer, and the CTA.",
+    "The website includes clear proof of the hospital management system and AI email campaign builder.",
+    "The pricing range INR 50,000-150,000 appears clearly and accurately for website work.",
+    "Complex web apps are described as custom-scoped.",
+    "GSAP-based scroll animation references are implemented with purpose.",
+    "The site remains usable without motion.",
+    "The lead form qualifies project type, budget, timeline, and contact information.",
+    "The design feels high-end, technical, and memorable without sacrificing navigation clarity.",
+    "No section feels like a generic template.",
+    "The site is responsive, accessible, performant, and ready for deployment."
+  ]
+}
