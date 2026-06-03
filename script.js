@@ -63,6 +63,8 @@
   const dot = document.querySelector(".cursor-dot");
   const glow = document.querySelector(".cursor-glow");
   const orbs = document.querySelectorAll(".hero-3d-orbs .orb");
+  const preloader = document.querySelector(".preloader");
+  const preloaderWrap = document.querySelector(".preloader-wrap");
 
   let mouse = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
   let currentDot = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
@@ -78,6 +80,13 @@
     window.addEventListener("mousemove", (event) => {
       mouse.x = event.clientX;
       mouse.y = event.clientY;
+
+      if (preloader) {
+        const mxPercent = (event.clientX / window.innerWidth) * 100;
+        const myPercent = (event.clientY / window.innerHeight) * 100;
+        preloader.style.setProperty("--mx", `${mxPercent}%`);
+        preloader.style.setProperty("--my", `${myPercent}%`);
+      }
 
       const hero = document.querySelector(".hero");
       if (hero) {
@@ -171,7 +180,7 @@
     headline.innerHTML = words.map((word) => `<span class="word">${word}</span>`).join(" ");
   }
 
-  const introTL = gsap.timeline({ defaults: { ease: "power3.out" } });
+  const introTL = gsap.timeline({ paused: true, defaults: { ease: "power3.out" } });
 
   // Pre-set some element properties for clean intro fade-ins
   gsap.set(".status-pill, .hero-actions > *, .hero-proof span, .showcase > *", { opacity: 0 });
@@ -238,6 +247,57 @@
     { opacity: 1, y: 0, scale: 1, rotateX: 0, duration: 1.15, stagger: 0.12 },
     "-=0.6"
   );
+
+  // Preloader mask reveal trigger logic
+  function startReveal() {
+    if (preloader && !preloader.classList.contains("revealing")) {
+      const mxPercent = (mouse.x / window.innerWidth) * 100;
+      const myPercent = (mouse.y / window.innerHeight) * 100;
+      preloader.style.setProperty("--mx", `${mxPercent}%`);
+      preloader.style.setProperty("--my", `${myPercent}%`);
+
+      preloader.classList.add("revealing");
+
+      const revealTL = gsap.timeline({
+        onComplete: () => {
+          preloader.style.display = "none";
+          ScrollTrigger.refresh();
+        }
+      });
+
+      if (preloaderWrap) {
+        revealTL.to(preloaderWrap, {
+          opacity: 0,
+          scale: 0.85,
+          y: -20,
+          duration: 0.6,
+          ease: "power2.inOut"
+        });
+      }
+
+      let revealObj = { radius: 0 };
+      revealTL.to(revealObj, {
+        radius: 150,
+        duration: 1.5,
+        ease: "power3.inOut",
+        onUpdate: () => {
+          preloader.style.setProperty("--reveal-radius", `${revealObj.radius}%`);
+        }
+      }, "-=0.35");
+
+      revealTL.add(() => {
+        introTL.play();
+      }, "-=0.95");
+    } else if (!preloader) {
+      introTL.play();
+    }
+  }
+
+  if (document.readyState === "complete") {
+    startReveal();
+  } else {
+    window.addEventListener("load", startReveal);
+  }
 
   /* ═══════════════════════════════════════════════════════
      SCROLL PROGRESS INDICATOR

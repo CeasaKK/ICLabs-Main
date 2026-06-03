@@ -443,7 +443,37 @@ h1 {
 }
 
 .services, .pricing { background: var(--paper); color: var(--text); }
-.work, .process, .contact { background: var(--ink); }
+.work, .process, .contact {
+  position: relative;
+  isolation: isolate;
+  background: var(--ink);
+}
+.work::before,
+.process::before,
+.contact::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background:
+    radial-gradient(circle at 72% 20%, rgba(0,185,118,0.22), transparent 28%),
+    radial-gradient(circle at 20% 80%, rgba(32,183,255,0.16), transparent 32%),
+    linear-gradient(135deg, #080b0f 0%, #101720 48%, #07090d 100%);
+}
+.work::after,
+.process::after,
+.contact::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  opacity: 0.45;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.045) 1px, transparent 1px);
+  background-size: clamp(38px, 5vw, 76px) clamp(38px, 5vw, 76px);
+  mask-image: linear-gradient(to bottom, black, transparent 88%);
+}
 
 .service-orbit, .work-board, .price-track, .process-rail, .contact {
   width: min(100%, var(--max));
@@ -1624,6 +1654,83 @@ html.lenis, html.lenis body {
 }
 .site-header.light-mode .brand {
   color: var(--text);
+}
+
+/* ── PRELOADER EXPANDING MASK REVEAL (Noomo Style) ── */
+.preloader {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(135deg, #0d1218 0%, #080b0f 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 99999;
+  pointer-events: auto; /* block clicks while loading */
+  --reveal-radius: 0%;
+  --reveal-feather: 15%;
+  will-change: mask-image, -webkit-mask-image;
+}
+
+.preloader.revealing {
+  pointer-events: none; /* pass clicks through once reveal starts */
+  -webkit-mask-image: radial-gradient(
+    circle at var(--mx, 50%) var(--my, 50%),
+    transparent 0%,
+    transparent calc(var(--reveal-radius) - var(--reveal-feather)),
+    rgba(0, 0, 0, 0.4) calc(var(--reveal-radius) - var(--reveal-feather) * 0.5),
+    #000 var(--reveal-radius),
+    #000 100%
+  );
+  mask-image: radial-gradient(
+    circle at var(--mx, 50%) var(--my, 50%),
+    transparent 0%,
+    transparent calc(var(--reveal-radius) - var(--reveal-feather)),
+    rgba(0, 0, 0, 0.4) calc(var(--reveal-radius) - var(--reveal-feather) * 0.5),
+    #000 var(--reveal-radius),
+    #000 100%
+  );
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+}
+
+.preloader-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  will-change: opacity, transform;
+}
+
+.preloader-logo {
+  display: grid;
+  place-items: center;
+  width: 68px;
+  height: 68px;
+  border-radius: 12px;
+  background: var(--green);
+  color: #03120c;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 20px;
+  font-weight: 900;
+  box-shadow: 0 0 40px rgba(0, 185, 118, 0.25);
+  animation: pulseLogo 2s ease-in-out infinite alternate;
+}
+
+@keyframes pulseLogo {
+  0% { transform: scale(1); filter: brightness(1); }
+  100% { transform: scale(1.06); filter: brightness(1.15); }
+}
+
+.preloader-text {
+  font-family: "JetBrains Mono", monospace;
+  color: var(--white);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  opacity: 0.85;
 }
 
 @media (prefers-reduced-motion: reduce) {
