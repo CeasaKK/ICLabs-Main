@@ -27,6 +27,7 @@ body {
   font-family: Inter, system-ui, sans-serif;
   letter-spacing: 0;
   overflow-x: hidden;
+  position: relative;
 }
 
 a { color: inherit; text-decoration: none; }
@@ -164,6 +165,24 @@ button, input, select, textarea { font: inherit; }
 .hero-bg span:nth-child(4) { left: 88%; animation-delay: -0.8s; background: linear-gradient(transparent, var(--amber), transparent); }
 @keyframes scan { 0% { transform: translateY(-70vh); } 100% { transform: translateY(120vh); } }
 
+.global-floating-elements {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  overflow: hidden;
+  width: 100%;
+}
+.motion-field,
+.hero-3d-orbs {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+}
+
 .motion-field i {
   position: absolute;
   z-index: -1;
@@ -174,13 +193,21 @@ button, input, select, textarea { font: inherit; }
   background: linear-gradient(135deg, rgba(0,185,118,.16), rgba(32,183,255,.08)), rgba(255,255,255,.035);
   box-shadow: inset 0 0 38px rgba(255,255,255,.05);
   animation: floatSpin 12s ease-in-out infinite;
+  will-change: transform;
 }
-.motion-field i:nth-child(1) { left: 5%; top: 22%; }
-.motion-field i:nth-child(2) { right: 9%; top: 16%; animation-delay: -2s; animation-duration: 15s; }
-.motion-field i:nth-child(3) { left: 42%; top: 72%; animation-delay: -4s; animation-duration: 18s; }
-.motion-field i:nth-child(4) { right: 28%; top: 46%; animation-delay: -6s; width: clamp(28px, 4vw, 64px); }
-.motion-field i:nth-child(5) { left: 20%; top: 58%; animation-delay: -8s; width: clamp(32px, 5vw, 82px); }
-.motion-field i:nth-child(6) { right: 3%; top: 78%; animation-delay: -10s; width: clamp(30px, 4vw, 70px); }
+.motion-field i:nth-child(1) { left: 8%; top: 3%; }
+.motion-field i:nth-child(2) { right: 12%; top: 8%; animation-delay: -2s; animation-duration: 15s; }
+.motion-field i:nth-child(3) { left: 45%; top: 18%; animation-delay: -4s; animation-duration: 18s; }
+.motion-field i:nth-child(4) { right: 25%; top: 28%; animation-delay: -6s; width: clamp(28px, 4vw, 64px); }
+.motion-field i:nth-child(5) { left: 15%; top: 38%; animation-delay: -8s; width: clamp(32px, 5vw, 82px); }
+.motion-field i:nth-child(6) { right: 6%; top: 46%; animation-delay: -10s; width: clamp(30px, 4vw, 70px); }
+.motion-field i:nth-child(7) { left: 10%; top: 54%; animation-delay: -1s; width: clamp(40px, 6vw, 90px); }
+.motion-field i:nth-child(8) { right: 15%; top: 64%; animation-delay: -3s; width: clamp(32px, 5vw, 75px); animation-duration: 14s; }
+.motion-field i:nth-child(9) { left: 38%; top: 72%; animation-delay: -5s; width: clamp(44px, 6vw, 100px); animation-duration: 16s; }
+.motion-field i:nth-child(10) { right: 8%; top: 82%; animation-delay: -7s; width: clamp(28px, 4vw, 60px); }
+.motion-field i:nth-child(11) { left: 20%; top: 90%; animation-delay: -9s; width: clamp(36px, 5vw, 80px); animation-duration: 20s; }
+.motion-field i:nth-child(12) { right: 32%; top: 96%; animation-delay: -11s; width: clamp(30px, 4vw, 70px); }
+
 @keyframes floatSpin {
   0%, 100% { transform: translate3d(0, 0, 0) rotate(0deg); opacity: .38; }
   35% { transform: translate3d(24px, -32px, 0) rotate(18deg); opacity: .72; }
@@ -997,46 +1024,6 @@ h1 {
   transition: box-shadow 0.4s var(--ease-smooth);
 }
 
-/* ── Floating 3D Orb Particles ── */
-.hero-3d-orbs {
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
-  overflow: hidden;
-}
-.hero-3d-orbs .orb {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(1px);
-  will-change: transform, opacity;
-}
-.hero-3d-orbs .orb:nth-child(1) {
-  width: 80px; height: 80px;
-  top: 15%; left: 8%;
-  background: radial-gradient(circle at 35% 35%, rgba(0,185,118,0.5), rgba(0,185,118,0.05));
-}
-.hero-3d-orbs .orb:nth-child(2) {
-  width: 60px; height: 60px;
-  top: 65%; right: 12%;
-  background: radial-gradient(circle at 35% 35%, rgba(32,183,255,0.4), rgba(32,183,255,0.05));
-}
-.hero-3d-orbs .orb:nth-child(3) {
-  width: 40px; height: 40px;
-  top: 40%; left: 55%;
-  background: radial-gradient(circle at 35% 35%, rgba(240,180,41,0.4), rgba(240,180,41,0.05));
-}
-.hero-3d-orbs .orb:nth-child(4) {
-  width: 100px; height: 100px;
-  bottom: 20%; left: 30%;
-  background: radial-gradient(circle at 30% 30%, rgba(124,255,191,0.25), rgba(124,255,191,0.02));
-}
-.hero-3d-orbs .orb:nth-child(5) {
-  width: 50px; height: 50px;
-  top: 25%; right: 25%;
-  background: radial-gradient(circle at 35% 35%, rgba(0,185,118,0.35), transparent);
-}
-
 /* ── Ticker (non-transform hover) ── */
 .ticker div span {
   display: inline-block;
@@ -1352,53 +1339,82 @@ h1 {
     0 8px 16px rgba(0,185,118,0.08);
 }
 
-/* ── Floating 3D Orb Particles (Hero Background) ── */
-.hero-3d-orbs {
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
-  overflow: hidden;
-}
+/* ── Floating 3D Orb Particles ── */
 .hero-3d-orbs .orb {
   position: absolute;
   border-radius: 50%;
   filter: blur(1px);
   animation: orbFloat 8s ease-in-out infinite;
+  will-change: transform;
 }
 .hero-3d-orbs .orb:nth-child(1) {
   width: 80px; height: 80px;
-  top: 15%; left: 8%;
+  top: 5%; left: 10%;
   background: radial-gradient(circle at 35% 35%, rgba(0,185,118,0.5), rgba(0,185,118,0.05));
   animation-delay: 0s;
   animation-duration: 10s;
 }
 .hero-3d-orbs .orb:nth-child(2) {
   width: 60px; height: 60px;
-  top: 65%; right: 12%;
+  top: 15%; right: 15%;
   background: radial-gradient(circle at 35% 35%, rgba(32,183,255,0.4), rgba(32,183,255,0.05));
   animation-delay: -2s;
   animation-duration: 12s;
 }
 .hero-3d-orbs .orb:nth-child(3) {
-  width: 40px; height: 40px;
-  top: 40%; left: 55%;
+  width: 50px; height: 50px;
+  top: 25%; left: 30%;
   background: radial-gradient(circle at 35% 35%, rgba(240,180,41,0.4), rgba(240,180,41,0.05));
   animation-delay: -4s;
   animation-duration: 9s;
 }
 .hero-3d-orbs .orb:nth-child(4) {
   width: 100px; height: 100px;
-  bottom: 20%; left: 30%;
+  top: 35%; right: 8%;
   background: radial-gradient(circle at 30% 30%, rgba(124,255,191,0.25), rgba(124,255,191,0.02));
   animation-delay: -6s;
   animation-duration: 14s;
 }
 .hero-3d-orbs .orb:nth-child(5) {
-  width: 50px; height: 50px;
-  top: 25%; right: 25%;
+  width: 70px; height: 70px;
+  top: 45%; left: 12%;
   background: radial-gradient(circle at 35% 35%, rgba(0,185,118,0.35), transparent);
   animation-delay: -3s;
+  animation-duration: 11s;
+}
+.hero-3d-orbs .orb:nth-child(6) {
+  width: 85px; height: 85px;
+  top: 58%; right: 20%;
+  background: radial-gradient(circle at 35% 35%, rgba(32,183,255,0.45), rgba(32,183,255,0.05));
+  animation-delay: -5s;
+  animation-duration: 13s;
+}
+.hero-3d-orbs .orb:nth-child(7) {
+  width: 55px; height: 55px;
+  top: 68%; left: 22%;
+  background: radial-gradient(circle at 35% 35%, rgba(240,180,41,0.35), rgba(240,180,41,0.03));
+  animation-delay: -7s;
+  animation-duration: 10s;
+}
+.hero-3d-orbs .orb:nth-child(8) {
+  width: 90px; height: 90px;
+  top: 78%; right: 10%;
+  background: radial-gradient(circle at 30% 30%, rgba(0,185,118,0.3), rgba(0,185,118,0.02));
+  animation-delay: -1s;
+  animation-duration: 15s;
+}
+.hero-3d-orbs .orb:nth-child(9) {
+  width: 65px; height: 65px;
+  top: 88%; left: 8%;
+  background: radial-gradient(circle at 35% 35%, rgba(124,255,191,0.4), rgba(124,255,191,0.05));
+  animation-delay: -8s;
+  animation-duration: 12s;
+}
+.hero-3d-orbs .orb:nth-child(10) {
+  width: 80px; height: 80px;
+  top: 94%; right: 28%;
+  background: radial-gradient(circle at 35% 35%, rgba(32,183,255,0.35), transparent);
+  animation-delay: -9s;
   animation-duration: 11s;
 }
 @keyframes orbFloat {

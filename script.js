@@ -458,13 +458,32 @@
     scrollTrigger: { trigger: ".work", start: "top bottom", end: "bottom top", scrub: true }
   });
 
-  gsap.to(".motion-field i", {
-    yPercent: -140,
-    rotate: 120,
-    scale: 0.6,
-    ease: "none",
-    stagger: 0.1,
-    scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: true }
+  // Dynamic scroll parallax for all background elements
+  gsap.utils.toArray(".motion-field i").forEach((item) => {
+    gsap.to(item, {
+      yPercent: -60,
+      rotate: 45,
+      ease: "none",
+      scrollTrigger: {
+        trigger: item,
+        start: "top bottom",
+        end: "bottom top",
+        scrub: 0.5
+      }
+    });
+  });
+
+  gsap.utils.toArray(".hero-3d-orbs .orb").forEach((orb) => {
+    gsap.to(orb, {
+      yPercent: -40,
+      ease: "none",
+      scrollTrigger: {
+        trigger: orb,
+        start: "top bottom",
+        end: "bottom top",
+        scrub: 0.5
+      }
+    });
   });
 
   /* ═══════════════════════════════════════════════════════
