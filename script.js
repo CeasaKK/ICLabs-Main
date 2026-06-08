@@ -136,7 +136,7 @@
 
     // Expand cursor ring on interactive elements
     const interactiveEls = document.querySelectorAll(
-      ".tilt, .service-tile, .price-card, .work-card, .process-rail article, .button, .floating-card, .device-shell, .brand-mark, .patient-card"
+      ".tilt, .service-tile, .price-card, .work-card, .process-rail article, .button, .floating-card, .device-shell, .brand-mark, .patient-card, .testimonial-card"
     );
     interactiveEls.forEach((el) => {
       el.addEventListener("mouseenter", () => {
@@ -655,7 +655,7 @@
   /* ═══════════════════════════════════════════════════════
      CARD INTERACTIVE TILT & SPOTLIGHT SYSTEM — GSAP Powered
      ═══════════════════════════════════════════════════════ */
-  document.querySelectorAll(".service-tile, .price-card, .work-card, .process-rail article, .contact-panel").forEach((card) => {
+  document.querySelectorAll(".service-tile, .price-card, .work-card, .process-rail article, .contact-panel, .testimonial-card").forEach((card) => {
     card.addEventListener("mouseenter", () => {
       card.classList.add("is-hovering");
     });
@@ -756,7 +756,7 @@
      ═══════════════════════════════════════════════════════ */
   const header = document.querySelector(".site-header");
   if (header) {
-    document.querySelectorAll(".services, .pricing").forEach((sec) => {
+    document.querySelectorAll(".services, .pricing, .testimonials").forEach((sec) => {
       ScrollTrigger.create({
         trigger: sec,
         start: "top 44px",
