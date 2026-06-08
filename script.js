@@ -732,7 +732,7 @@
   /* ═══════════════════════════════════════════════════════
      TICKER — Scroll-Velocity Responsive Skew
      ═══════════════════════════════════════════════════════ */
-  const ticker = document.querySelector(".ticker div");
+  const ticker = document.querySelector(".ticker");
   if (ticker) {
     ScrollTrigger.create({
       trigger: ".ticker",
@@ -751,7 +751,7 @@
     });
   }
 
-  const tickerSecondary = document.querySelector(".ticker-secondary div");
+  const tickerSecondary = document.querySelector(".ticker-secondary");
   if (tickerSecondary) {
     ScrollTrigger.create({
       trigger: ".ticker-secondary",
