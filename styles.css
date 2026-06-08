@@ -393,17 +393,17 @@ h1 { max-width: 760px; margin: 22px 0; font-size: clamp(36px, 4.5vw, 68px); }
   background: var(--green); color: #04120d;
   position: relative; z-index: 2;
 }
-.ticker div {
+.ticker > div {
   display: flex; gap: 42px; width: max-content; padding: 16px 0;
   font-family: "JetBrains Mono", monospace; font-size: 13px;
   font-weight: 900; text-transform: uppercase;
-  animation: marquee 24s linear infinite;
+  animation: marquee 24s linear infinite !important;
   will-change: transform;
 }
-.ticker div span { display: inline-block; }
+.ticker > div span { display: inline-block; white-space: nowrap; }
 @keyframes marquee {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
 }
 
 .ticker-secondary {
@@ -415,7 +415,7 @@ h1 { max-width: 760px; margin: 22px 0; font-size: clamp(36px, 4.5vw, 68px); }
   z-index: 2;
 }
 
-.ticker-secondary div {
+.ticker-secondary > div {
   display: flex;
   gap: 42px;
   width: max-content;
@@ -425,13 +425,15 @@ h1 { max-width: 760px; margin: 22px 0; font-size: clamp(36px, 4.5vw, 68px); }
   font-weight: 900;
   text-transform: uppercase;
   animation: marquee 28s linear infinite !important;
+  will-change: transform;
 }
 
-.ticker-secondary:hover div {
+.ticker-secondary:hover > div,
+.ticker:hover > div {
   animation-play-state: paused !important;
 }
 
-.ticker-secondary div span {
+.ticker-secondary > div span {
   display: inline-block;
   white-space: nowrap;
 }

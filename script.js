@@ -355,7 +355,7 @@
   /* ═══════════════════════════════════════════════════════
      STAGGERED BATCH REVEALS
      ═══════════════════════════════════════════════════════ */
-  ScrollTrigger.batch(".reveal:not(.section-head)", {
+  ScrollTrigger.batch(".reveal:not(.section-head):not(.faq-item):not(.testimonial-card)", {
     interval: 0.08,
     batchMax: 4,
     onEnter: (batch) => {
@@ -732,8 +732,8 @@
   /* ═══════════════════════════════════════════════════════
      TICKER — Scroll-Velocity Responsive Skew
      ═══════════════════════════════════════════════════════ */
-  const ticker = document.querySelector(".ticker");
-  if (ticker) {
+  const tickerEl = document.querySelector(".ticker");
+  if (tickerEl) {
     ScrollTrigger.create({
       trigger: ".ticker",
       start: "top bottom",
@@ -741,7 +741,7 @@
       onUpdate: (self) => {
         let velocity = self.getVelocity() / 300;
         let skew = gsap.utils.clamp(-8, 8, velocity);
-        gsap.to(ticker, {
+        gsap.to(tickerEl, {
           skewX: skew,
           duration: 0.4,
           ease: "power2.out",
@@ -751,8 +751,8 @@
     });
   }
 
-  const tickerSecondary = document.querySelector(".ticker-secondary");
-  if (tickerSecondary) {
+  const tickerSecondaryEl = document.querySelector(".ticker-secondary");
+  if (tickerSecondaryEl) {
     ScrollTrigger.create({
       trigger: ".ticker-secondary",
       start: "top bottom",
@@ -760,7 +760,7 @@
       onUpdate: (self) => {
         let velocity = self.getVelocity() / 300;
         let skew = gsap.utils.clamp(-8, 8, velocity);
-        gsap.to(tickerSecondary, {
+        gsap.to(tickerSecondaryEl, {
           skewX: skew,
           duration: 0.4,
           ease: "power2.out",
@@ -1043,4 +1043,117 @@
       });
     });
   }
+
+  /* ═══════════════════════════════════════════════════════
+     NEW INTERACTIVE SECTIONS (TESTIMONIALS, FAQ, SCROLL HINT, PRICING FEATURES)
+     ═══════════════════════════════════════════════════════ */
+
+  /* 1. TESTIMONIAL CARDS — Tilt & Spotlight Registration */
+  document.querySelectorAll(".testimonial-card").forEach((card) => {
+    card.addEventListener("mouseenter", () => {
+      card.classList.add("is-hovering");
+    });
+    card.addEventListener("mousemove", (event) => {
+      const rect = card.getBoundingClientRect();
+      const px = (event.clientX - rect.left) / rect.width;
+      const py = (event.clientY - rect.top) / rect.height;
+      const maxTilt = 10;
+      const rx = (py - 0.5) * -maxTilt;
+      const ry = (px - 0.5) * maxTilt;
+      card.style.setProperty("--mx", `${px * 100}%`);
+      card.style.setProperty("--my", `${py * 100}%`);
+      gsap.to(card, {
+        rotateX: rx,
+        rotateY: ry,
+        y: -10,
+        scale: 1.03,
+        transformPerspective: 800,
+        transformOrigin: "center",
+        duration: 0.4,
+        ease: "power2.out",
+        overwrite: "auto"
+      });
+    });
+    card.addEventListener("mouseleave", () => {
+      card.classList.remove("is-hovering");
+      gsap.to(card, {
+        rotateX: 0, rotateY: 0, y: 0, scale: 1,
+        duration: 0.7, ease: "power3.out", overwrite: "auto"
+      });
+    });
+  });
+
+  /* 2. TESTIMONIAL CARDS — Staggered Scroll Entry */
+  ScrollTrigger.batch(".testimonial-card", {
+    interval: 0.1,
+    batchMax: 3,
+    onEnter: (batch) => {
+      gsap.fromTo(batch,
+        { opacity: 0, y: 50, rotateX: -8, scale: 0.95, transformPerspective: 800 },
+        { opacity: 1, y: 0, rotateX: 0, scale: 1, duration: 0.9, stagger: 0.15, ease: "power3.out", overwrite: "auto" }
+      );
+    },
+    once: true
+  });
+
+  /* 3. FAQ ACCORDION — Smooth GSAP Height Animation */
+  document.querySelectorAll(".faq-item").forEach((item) => {
+    const summary = item.querySelector("summary");
+    const answer = item.querySelector("p");
+    if (!summary || !answer) return;
+
+    summary.addEventListener("click", (e) => {
+      e.preventDefault();
+      if (item.hasAttribute("open")) {
+        gsap.to(answer, {
+          height: 0, opacity: 0, duration: 0.35, ease: "power2.inOut",
+          onComplete: () => {
+            item.removeAttribute("open");
+            gsap.set(answer, { height: "auto" });
+          }
+        });
+      } else {
+        item.setAttribute("open", "");
+        const fullHeight = answer.scrollHeight;
+        gsap.fromTo(answer, { height: 0, opacity: 0 }, { height: fullHeight, opacity: 1, duration: 0.4, ease: "power2.out" });
+      }
+    });
+  });
+
+  /* 4. FAQ ITEMS — Staggered Scroll Reveal */
+  ScrollTrigger.batch(".faq-item", {
+    interval: 0.08,
+    batchMax: 6,
+    onEnter: (batch) => {
+      gsap.fromTo(batch,
+        { opacity: 0, y: 30, x: -15 },
+        { opacity: 1, y: 0, x: 0, duration: 0.7, stagger: 0.1, ease: "power2.out", overwrite: "auto" }
+      );
+    },
+    once: true
+  });
+
+  /* 5. SCROLL HINT — Fade Out on Scroll */
+  const scrollHint = document.querySelector(".scroll-hint");
+  if (scrollHint) {
+    gsap.to(scrollHint, {
+      opacity: 0, y: -10, duration: 0.5, ease: "power2.out",
+      scrollTrigger: { trigger: ".hero", start: "top top", end: "20% top", scrub: true }
+    });
+  }
+
+  /* 6. PRICING FEATURE LISTS — Stagger on Card Entry */
+  document.querySelectorAll(".price-card").forEach((card) => {
+    const features = card.querySelectorAll(".price-features li");
+    if (!features.length) return;
+    gsap.set(features, { opacity: 0, x: -10 });
+    ScrollTrigger.create({
+      trigger: card,
+      start: "top 80%",
+      once: true,
+      onEnter: () => {
+        gsap.to(features, { opacity: 1, x: 0, duration: 0.5, stagger: 0.08, ease: "power2.out" });
+      }
+    });
+  });
 })();
