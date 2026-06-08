@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>From the Lab — Isocode Labs Blog</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #080b0f;
+      --graphite: #121820;
+      --panel: #18202a;
+      --white: #ffffff;
+      --muted: #8d98a7;
+      --green: #00b976;
+      --green-2: #7cffbf;
+      --cyan: #20b7ff;
+      --radius: 8px;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background-color: var(--ink);
+      color: var(--white);
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      line-height: 1.65;
+      padding: clamp(24px, 5vw, 64px) 20px;
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      margin-bottom: 40px;
+      transition: color 0.2s ease;
+    }
+    .back-link:hover {
+      color: var(--green-2);
+    }
+    h1 {
+      font-size: clamp(32px, 5vw, 48px);
+      font-weight: 900;
+      margin: 0 0 12px;
+      letter-spacing: -0.03em;
+    }
+    .blog-intro {
+      color: var(--muted);
+      font-size: clamp(16px, 2.5vw, 18px);
+      margin: 0 0 64px;
+      max-width: 600px;
+      line-height: 1.6;
+    }
+    .post {
+      margin-bottom: 80px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding-bottom: 60px;
+      scroll-margin-top: 40px;
+    }
+    .post:last-of-type {
+      border-bottom: none;
+      padding-bottom: 0;
+      margin-bottom: 0;
+    }
+    .post-tag {
+      display: inline-block;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--green-2);
+      margin-bottom: 16px;
+      letter-spacing: 0.1em;
+    }
+    .post h2 {
+      font-size: clamp(22px, 3.5vw, 32px);
+      font-weight: 800;
+      margin: 0 0 12px;
+      letter-spacing: -0.02em;
+      line-height: 1.25;
+    }
+    .post h2 a {
+      color: var(--white);
+      text-decoration: none;
+    }
+    .post h2 a:hover {
+      color: var(--green);
+    }
+    .post-meta {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 28px;
+    }
+    .post p {
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 16px;
+      margin: 0 0 20px;
+    }
+    .post ul {
+      margin: 0 0 24px;
+      padding-left: 20px;
+    }
+    .post li {
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 16px;
+      margin-bottom: 8px;
+    }
+    .post code {
+      font-family: 'JetBrains Mono', monospace;
+      background: rgba(255, 255, 255, 0.08);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 14px;
+      color: var(--cyan);
+    }
+    .post strong {
+      color: var(--white);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="index.html" class="back-link">← Back to Isocode Labs</a>
+    <h1>From the Lab</h1>
+    <p class="blog-intro">Short reads on the tech, tools, and ideas behind what we build.</p>
+
+    <!-- Post 1 -->
+    <article class="post" id="gsap-vs-css">
+      <span class="post-tag">Engineering</span>
+      <h2>Why we use GSAP over CSS animations for production websites</h2>
+      <div class="post-meta">June 2026 &bull; 4 min read</div>
+      <p>For simple hover effects and basic transitions, CSS is fine. But for scroll-driven orchestration, physics, and timeline control, it fails. GSAP (GreenSock Animation Platform) is our default choice at Isocode Labs. Here is why.</p>
+      <p>First, <strong>ScrollTrigger</strong>. In CSS, triggering an animation based on the user's scroll position requires writing custom event listeners, tracking <code>window.scrollY</code>, computing element offsets, and managing state. This is messy, slow, and prone to layout thrashing. GSAP's ScrollTrigger solves this with highly optimized intersection calculations and native support for scrubbing, pinning, and parallax effects.</p>
+      <p>Second, <strong>timeline orchestration</strong>. If you want a headline to fade in, then a list of features to stagger-reveal, and finally a CTA button to slide up, CSS keyframes require hardcoding precise animation-delay values. If you decide to change the duration of the first animation, you have to manually recalculate every single delay. With GSAP timelines, we write:
+      <code>tl.from('.header', {opacity: 0}).from('.item', {opacity: 0, stagger: 0.1}, '-=0.2')</code>. It is linear, dynamic, and easy to adjust.</p>
+      <p>Third, <strong>physics and custom easing</strong>. CSS offers standard <code>ease-in</code> or <code>cubic-bezier</code>. GSAP provides complex easing curves, bounce physics, elastic effects, and custom curves that make interfaces feel natural and premium. By directly updating CSS variables or transform matrices via inline styles, GSAP bypassed CSS's limitations and is fully optimized for browser rendering loops (<code>requestAnimationFrame</code>). It manages memory leaks and hardware acceleration automatically.</p>
+      <p>We also use <code>gsap.matchMedia()</code> extensively to handle responsiveness. Animating layout changes on desktop is different from mobile; with CSS, disabling or changing complex keyframes on smaller screens is a nightmare of media query overrides. GSAP lets us register media-specific animation sets that clean themselves up when resizing. Finally, debugging: GSAP's developer tools and timeline controls let us pause, reverse, or inspect animations frame-by-frame, whereas debugging CSS keyframes is a frustrating exercise in refreshing the page.</p>
+      <p>In our own builds, like the Isocode Labs landing page, we use GSAP to orchestrate the header blur, the tilt cards, the batch reveals, and the secondary ticker bar. The result is fluid motion that feels alive. We build websites people actually screenshot and send to their friends.</p>
+    </article>
+
+    <!-- Post 2 -->
+    <article class="post" id="ai-campaign-tool">
+      <span class="post-tag">AI</span>
+      <h2>Building an AI email campaign tool from scratch</h2>
+      <div class="post-meta">June 2026 &bull; 4 min read</div>
+      <p>We recently incubated and built an AI-powered email campaign tool. The core product requirement was simple: allow a user to generate, preview, and send highly customized email campaigns without leaving the builder interface.</p>
+      <p>Architecturally, we chose Next.js for the entire app. Next.js App Router allowed us to build robust React Server Components for fast page loading and API routes for handling communication with the OpenAI API. For the template engine, we integrated MJML, a compile-to-HTML engine that outputs highly responsive emails that look great on Gmail, Outlook, and Apple Mail alike. The OpenAI API is queried via serverless endpoints, prompting the model (GPT-4o) with context-specific data: brand tone, target audience, and campaign objective.</p>
+      <p>One of our biggest engineering challenges was prompt engineering for brand voice. If the user prompts the AI with a generic description like "write a sales pitch," the response is often filled with robotic buzzwords and exclamation marks. We solved this by creating a structured system prompt that parses past successful emails from the user's brand, extracts the writing style (sentence length, vocabulary density, call-to-action placement), and injects it into the prompt context.</p>
+      <p>Another major challenge was real-time preview rendering. Generating a full email HTML template using AI takes 5-10 seconds. Waiting in front of a blank screen is a poor user experience. We implemented a streaming UI using React Server Components and Server-Sent Events (SSE). The AI streams JSON back, which we progressively parse and render as a wireframe preview in real-time, showing the user exactly what is being generated word-by-word.</p>
+      <p>We also had to tackle API rate limiting and queue management. Since sending emails and calling OpenAI are asynchronous, long-running processes, we integrated BullMQ with a Redis backend. This queue structure ensures that even if OpenAI experiences latency spikes or if a campaign has 5,000 recipients, our servers process the requests reliably without dropping jobs or blocking the event loop.</p>
+      <p>What we learned building this in production is that AI is only as good as the system architecture surrounding it. A robust builder needs more than just a wrapper around GPT; it requires a deep understanding of UX, server queues, and template compilation.</p>
+    </article>
+
+    <!-- Post 3 -->
+    <article class="post" id="hospital-system">
+      <span class="post-tag">Systems</span>
+      <h2>Lessons from building a hospital management system</h2>
+      <div class="post-meta">June 2026 &bull; 4 min read</div>
+      <p>Building a marketing landing page requires focusing on visual aesthetic and page loading speeds. Building a hospital management system, however, requires a completely different engineering mindset: zero-tolerance for data loss, strict role-based access, and deep operational complexity.</p>
+      <p>We shipped a full operational system for a live clinic, covering patient appointments, billing, inventory, prescriptions, and doctor consultations. The core stack consisted of Next.js for the UI and Supabase for the database and authentication layers. Next.js allowed us to build complex, responsive dashboards, while Supabase provided us with real-time PostgreSQL subscriptions, robust row-level security (RLS), and secure auth.</p>
+      <p>In a hospital system, role-based access control (RBAC) is paramount. A doctor should see clinical consultation notes and medical history, but not the billing ledger. A receptionist needs access to appointments and billing, but not private patient health records. We built RBAC using PostgreSQL RLS policies. Every database query checks the user's role metadata directly at the database level, ensuring that even if a frontend developer makes a mistake in the UI code, unauthorized data can never leave the database.</p>
+      <p>Real-time updates were critical for patient queuing. Doctors need to see their waiting list update automatically when a receptionist checks a patient in. We utilized PostgreSQL's Write-Ahead Log (WAL) listener in Supabase to stream database changes to the client over WebSockets. When a receptionist updates a patient's status to "waiting", the doctor's dashboard updates instantly without requiring a page refresh or aggressive API polling.</p>
+      <p>Handling inventory management for drugs was another challenge. A clinic has hundreds of medicines with differing expiry dates. Every time a doctor writes a prescription, the system must atomically decrement the inventory stock for that specific batch. We solved this using PostgreSQL database transactions (<code>rpc</code> calls). If a transaction fails (e.g. if the item is out of stock), the entire prescription is rolled back, preventing orphaned records.</p>
+      <p>Building operational software taught us that reliability and security are the ultimate features. A pretty UI is useless if a billing transaction fails or a patient record goes missing. We brought this obsessive focus on database safety and clean code back to all our client builds.</p>
+    </article>
+
+    <!-- Post 4 -->
+    <article class="post" id="creator-launches">
+      <span class="post-tag">Growth</span>
+      <h2>How we help creators ship digital products in weeks</h2>
+      <div class="post-meta">June 2026 &bull; 3 min read</div>
+      <p>For creators, attention is their main currency. When launching a product, timing is everything. We have built a framework that allows creators to go from a product concept to a fully operational launch system in less than three weeks.</p>
+      <p>Our approach separates standard marketing landing pages from high-performance conversion systems. A product page shouldn't just look pretty; it must load in under a second, clearly explain the value proposition, handle sudden traffic spikes (thousands of visitors in minutes from a single social media post), and offer a friction-free checkout.</p>
+      <p>Our tech stack for creator launches relies on static generation (SSG) with Next.js or Astro, combined with a edge hosting platform like Vercel. By pre-rendering the landing pages to static HTML and serving them from CDN edge servers close to the user, we achieve sub-500ms load times globally.</p>
+      <p>For payments and checkouts, we integrate Stripe or Razorpay directly using serverless API endpoints. We avoid heavy e-commerce platforms like Shopify for single-product launches because they introduce bloated Javascript and unnecessary database queries that slow down page loads. Instead, we write custom checkout pages that collect the absolute minimum customer information, reducing cart abandonment.</p>
+      <p>We also build dynamic scarcity and proof components (such as "14 slots remaining" or "recent sales" tickers) powered by real-time database queries (using Supabase or Redis) that bypass static caching. This ensures the data is accurate without sacrificing the speed of static HTML.</p>
+      <p>By focusing on performance, custom checkout routes, and high-impact copywriting structures, we've helped creators ship digital products that convert traffic at double the rate of generic platforms.</p>
+    </article>
+
+    <!-- Post 5 -->
+    <article class="post" id="internship-platform">
+      <span class="post-tag">Culture</span>
+      <h2>Why we built our own internship platform</h2>
+      <div class="post-meta">June 2026 &bull; 3 min read</div>
+      <p>At Isocode Labs, we run internship programs for engineering students to help them build real-world products. However, managing 50+ interns across multiple active client projects and experimental ventures quickly became an administrative nightmare.</p>
+      <p>We tried off-the-shelf tools like Jira, Trello, and Notion, but they were either too complex for students or lacked features like custom review cycles and automated certificate generation. So, we did what any group of builders would do: we built our own internal platform.</p>
+      <p>Our custom dashboard allows interns to view their assigned tasks, submit code links for review, receive feedback from senior engineers, and track their progress through a structured curriculum.</p>
+      <p>Building this internal platform solved three problems at once. First, it streamlined our management overhead. Senior developers can review submissions and approve certificates in a single click. Second, it served as a playground for our interns. They didn't just use the platform; they helped build it, writing new components and shipping updates to their peers.</p>
+      <p>Third, and most importantly, building internal tools makes us better at building for our clients. It forces us to act as our own demanding client. When we build tools that our own team uses daily, we experience the friction points firsthand. We learn how UI decisions impact daily productivity, how data loading delays frustrate users, and how bugs disrupt workflows.</p>
+      <p>Building our internship platform reminded us that the best software is born from real, practical pain. We carry this developer-first, builder-first mindset into every system, database, and interface we design for our clients.</p>
+    </article>
+  </div>
+</body>
+</html>

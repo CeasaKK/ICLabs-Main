@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Refund Policy | Isocode Labs</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #080b0f;
+      --graphite: #121820;
+      --panel: #18202a;
+      --white: #ffffff;
+      --muted: #8d98a7;
+      --green: #00b976;
+      --green-2: #7cffbf;
+      --cyan: #20b7ff;
+      --radius: 8px;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background-color: var(--ink);
+      color: var(--white);
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      line-height: 1.6;
+      padding: clamp(24px, 5vw, 64px) 20px;
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      margin-bottom: 40px;
+      transition: color 0.2s ease;
+    }
+    .back-link:hover {
+      color: var(--green-2);
+    }
+    h1 {
+      font-size: clamp(28px, 4vw, 40px);
+      font-weight: 800;
+      margin: 0 0 8px;
+      letter-spacing: -0.02em;
+    }
+    .meta {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      color: var(--cyan);
+      margin-bottom: 48px;
+      text-transform: uppercase;
+    }
+    h2 {
+      font-size: clamp(20px, 3vw, 24px);
+      font-weight: 700;
+      margin: 40px 0 16px;
+      letter-spacing: -0.01em;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding-bottom: 8px;
+    }
+    p {
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 16px;
+      margin: 0 0 20px;
+    }
+    ul {
+      margin: 0 0 24px;
+      padding-left: 20px;
+    }
+    li {
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 16px;
+      margin-bottom: 10px;
+    }
+    .highlight {
+      color: var(--green-2);
+    }
+    a.contact-link {
+      color: var(--green);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    a.contact-link:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="index.html" class="back-link">← Back to Isocode Labs</a>
+    <h1>Refund Policy</h1>
+    <div class="meta">Effective: June 2026</div>
+
+    <p>We build high-end products and custom systems. Because we commit dedicated engineering time and lock specific build slots for each project, we operate under a clear, milestone-based refund policy. Here is how it works in plain English.</p>
+
+    <h2>1. The Deposit (Booking Fee)</h2>
+    <p>To secure a build slot in our schedule, we require a deposit. This booking fee is <strong class="highlight">non-refundable</strong>. It covers the initial product discovery, research, tech stack planning, and wireframing, while guaranteeing that we don't book other clients during your scheduled slot.</p>
+
+    <h2>2. Milestone-Based Refunds</h2>
+    <p>Our work is split into defined milestones (e.g., UI design, frontend development, custom dashboard integration). Refunds are only available for milestones that <strong class="highlight">have not yet started</strong>. Once we begin work on a milestone, the payment allocated to that milestone is non-refundable.</p>
+
+    <h2>3. Completed and Approved Work</h2>
+    <p>We do not issue refunds for milestones that have been completed and approved by your team. Your approval of a milestone signifies that the work meets your standards, and we release it to proceed to the next phase.</p>
+
+    <h2>4. Project Cancellation Scenarios</h2>
+    <p>If the project is cancelled mid-way, the refund structure depends on who initiates the cancellation:</p>
+    <ul>
+      <li><strong class="highlight">If you cancel:</strong> You agree to pay for all completed milestones plus 20% of the remaining project scope to compensate for reserved, unused development capacity. Any prepaid amounts beyond this will be refunded.</li>
+      <li><strong class="highlight">If we cancel:</strong> If we are unable to complete the work due to unforeseen circumstances, we will issue a full refund for all undelivered milestones.</li>
+    </ul>
+
+    <h2>5. The Refund Process</h2>
+    <p>If you need to request a refund, please email us at <a href="mailto:hello@isocodeslab.com" class="contact-link">hello@isocodeslab.com</a> within 7 days of the event prompting the request. We will review your request, calculate the completed vs. remaining scope, and resolve the matter within 14 business days.</p>
+  </div>
+</body>
+</html>
